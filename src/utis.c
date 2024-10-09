@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:40:05 by gpolo             #+#    #+#             */
-/*   Updated: 2024/09/27 15:54:35 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/04 16:30:50 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int error(void)
 	return (0);
 }
 
-void swap(t_stack **lst)
+int swap(t_stack **lst)
 {
 	t_stack *first;
 	t_stack *second;
 	t_stack	*last;
 
 	if (!lst || !(*lst) || (*lst)->next == (*lst))
-		return;
+		return (0);
 	first = *lst;
 	second = (*lst)->next;
 	last =(*lst)->prev;
@@ -36,26 +36,29 @@ void swap(t_stack **lst)
 	second->next = first;
 	first->prev = second;
 	*lst = second;
+	return (1);
 }
 
-void    push(t_stack **stack_i, t_stack **stack_p)
+int	push(t_stack **stack_i, t_stack **stack_p)
 {
 	t_stack *first;
-	first = *stack_i;
-	
 
+	first = *stack_i;
 	if (!stack_i || !(*stack_i))
-		return;
+		return (0);
 	ft_delete_first_node(stack_i);
 	ft_lstadd_front(stack_p, first);
+	return(1);
 }
 
-void	rotate(t_stack **lst)
+int	rotate(t_stack **lst)
 {
 	*lst = (*lst)->next;
+	return (1);
 }
 
-void	r_rotate(t_stack **lst)
+int	r_rotate(t_stack **lst)
 {
 	*lst = (*lst)->prev;
+	return (1);
 }

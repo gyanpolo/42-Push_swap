@@ -6,14 +6,13 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:12 by gpolo             #+#    #+#             */
-/*   Updated: 2024/09/27 16:11:03 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/09 13:39:14 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	create_t_lis
-(int argc, char **argv, t_stack **stack_a)
+void	create_t_lis(int argc, char **argv, t_stack **stack_a)
 {
 	int i;
 	t_stack *new;
@@ -52,18 +51,21 @@ void	print_lis(t_stack *stack_a)
 		i++;
 	}
 }
-/*
+
 int main(int argc, char **argv)
 {
 	static t_stack	*stack_a;
 	static t_stack	*stack_b;
 
-	if(argc == 1)
+	if (argc == 1)
 		return (error());
-	create_t_lis(argc, argv, &stack_b, &stack_a);
+	if (0 == checker(argv))
+		return (error());
+	create_t_lis(argc, argv, &stack_a);
 	print_lis(stack_a);
-	printf("--------------\nSA\n");
-	sa(&stack_a);
+	print_lis(stack_b);
+	my_algoritm(&stack_a, &stack_b);
 	print_lis(stack_a);
+	print_lis(stack_b);
 	return (1);
-}*/
+}
