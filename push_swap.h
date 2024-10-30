@@ -6,26 +6,28 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:30 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/09 14:30:58 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:13:19 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include "libftprintf.h"
-#include "libft.h"
+# include <stdio.h>
+# include "libftprintf.h"
+# include "libft.h"
+# include <limits.h>
 
-typedef struct  s_values
+typedef struct s_values
 {
 	int	moves_up;
-	int moves_dw;
+	int	moves_dw;
 }		t_values;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	struct s_stack	*prev;
 	int				num;
+	int				index;
 	struct s_stack	*next;
 }		t_stack;
 
@@ -60,5 +62,11 @@ void	my_algoritm(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack *stack_a, t_stack *stack_b, int size);
 int		the_lowest(t_stack **stack_a);
 int		are_in_o(t_stack **stack_a);
-void    rotate_to_lowest(t_stack **stack_a, int lowest);
+void	rotate_to_lowest(t_stack **stack_a, int lowest);
+int		no_max_min(t_stack **stack, int max, int min);
+void	move_up_or_dw_b(int num, t_stack **stack_b, t_values *values);
+int		the_highest(t_stack **stack_a);
+int		the_next_lowest(t_stack **satck_a, int lowest);
+void	put_index(t_stack **stack_a);
+
 #endif

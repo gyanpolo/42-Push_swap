@@ -6,11 +6,11 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:34:17 by gpolo             #+#    #+#             */
-/*   Updated: 2024/09/27 16:11:26 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:19:47 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "push_swap.h"
+#include "push_swap.h"
 
 void	ft_lstdelone(t_stack *lst, void (*del)(void *))
 {
@@ -20,16 +20,16 @@ void	ft_lstdelone(t_stack *lst, void (*del)(void *))
 	free(lst);
 }
 
-void free_content(void *content)
+void	free_content(void *content)
 {
-    free(content);
+	free(content);
 }
 
 void	ft_delete_first_node(t_stack **lst)
 {
-	t_stack *first;
-	first = *lst;
+	t_stack	*first;
 
+	first = *lst;
 	if (first->next == first)
 		*lst = NULL;
 	else
@@ -42,8 +42,8 @@ void	ft_delete_first_node(t_stack **lst)
 
 void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	if (!lst || !(*lst))
 	{
@@ -54,7 +54,7 @@ void	ft_lstadd_front(t_stack **lst, t_stack *new)
 	else
 	{
 		first = *lst;
-		last =(*lst)->prev;
+		last = (*lst)->prev;
 		new->next = first;
 		new->prev = last;
 		last->next = new;

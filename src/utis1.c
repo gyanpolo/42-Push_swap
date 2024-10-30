@@ -6,17 +6,36 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 15:59:02 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/09 15:00:19 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:17:43 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    rrr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	rra(stack_a, 0);
 	rrb(stack_b, 0);
 	ft_printf("rrr\n");
+}
+
+int	no_max_min(t_stack **stack, int max, int min)
+{
+	int		size;
+	t_stack	*tmp;
+
+	if (!stack)
+		return (0);
+	tmp = *stack;
+	size = ft_lstsize(tmp);
+	while (size != 0)
+	{
+		if ((tmp->index < max) && (tmp->index >= min))
+			return (0);
+		tmp = tmp->next;
+		size--;
+	}
+	return (1);
 }
 
 int	the_lowest(t_stack **stack_a)
@@ -24,7 +43,7 @@ int	the_lowest(t_stack **stack_a)
 	int		low;
 	int		size;
 	t_stack	*stack_i;
-	
+
 	stack_i = *stack_a;
 	low = stack_i->num;
 	size = ft_lstsize(*stack_a);
@@ -40,9 +59,9 @@ int	the_lowest(t_stack **stack_a)
 
 void	rotate_to_lowest(t_stack **stack_a, int lowest)
 {
-	int size;
-	int pos;
-	t_stack *temp;
+	int		size;
+	int		pos;
+	t_stack	*temp;
 
 	size = ft_lstsize(*stack_a);
 	pos = 0;
@@ -50,7 +69,7 @@ void	rotate_to_lowest(t_stack **stack_a, int lowest)
 	while (temp)
 	{
 		if (temp->num == lowest)
-			break;
+			break ;
 		temp = temp->next;
 		pos++;
 	}
@@ -64,12 +83,11 @@ void	rotate_to_lowest(t_stack **stack_a, int lowest)
 
 int	are_in_o(t_stack **stack_a)
 {
-	int size;
-	t_stack *temp;
+	int		size;
+	t_stack	*temp;
 
 	size = ft_lstsize(*stack_a);
 	temp = *stack_a;
-
 	while (size > 1)
 	{
 		if (temp->num > temp->next->num)
@@ -79,4 +97,3 @@ int	are_in_o(t_stack **stack_a)
 	}
 	return (1);
 }
-

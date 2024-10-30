@@ -6,7 +6,7 @@
 #    By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 11:11:44 by gpolo             #+#    #+#              #
-#    Updated: 2024/09/19 17:48:30 by gpolo            ###   ########.fr        #
+#    Updated: 2024/10/29 12:57:26 by gpolo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MKDIR			:= mkdir -p
 
 all:			$(NAME)
 
-$(NAME):	    $(OBJSDIRS) $(OBJS) $(LIBS_A) Makefile
+$(NAME):	    $(OBJSDIRS) $(OBJS) $(LIBS_A) $(LIBS) Makefile
 				$(CC) $(CFLAGS) $(LIBS) $(OBJS) $(LIBS_A) -o $(NAME)
 	
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c Makefile 

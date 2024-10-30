@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:07:16 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/09 15:00:12 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/29 12:37:42 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,30 @@ void	sort_three(t_stack **stack_a)
 		rra(stack_a, 1);
 }
 
+void put_index(t_stack **stack_a)
+{
+	int	lowest;
+	int	first;
+	int	i;
+
+	i = 0;
+	first = (*stack_a)->num;
+	lowest = the_lowest(stack_a);
+	while (lowest != (the_highest(stack_a)))
+	{
+		while ((*stack_a)->num != lowest)
+			*stack_a = (*stack_a)->next;
+		(*stack_a)->index = i++;
+		lowest = the_next_lowest(stack_a, lowest);
+	}
+	while ((*stack_a)->num != lowest)
+		*stack_a = (*stack_a)->next;
+	(*stack_a)->index = i++;
+	lowest = the_next_lowest(stack_a, lowest);
+	while ((*stack_a)->num != first)
+		*stack_a = (*stack_a)->next;
+}
+
 void move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
 {
 	t_stack *tmp;
@@ -53,7 +77,7 @@ void move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
 	size = ft_lstsize(*stack_a);
 	while (size > 0)
 	{
-		if ((tmp->num < max) && (tmp->num > min))
+		if ((tmp->index < max) && (tmp->index >= min))
 		{
 			values->moves_up = i;
 			break;
@@ -62,10 +86,11 @@ void move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
 		size--;
 		i++;
 	}
+	tmp = *stack_a;
 	size = ft_lstsize(*stack_a);
 	while (size > 0)
 	{
-		if ((tmp->num < max) && (tmp->num > min) && (i != j))
+		if ((tmp->index < max) && (tmp->index >= min) && (i != j))
 		{
 			values->moves_dw = j;
 			break;
@@ -78,28 +103,43 @@ void move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
 
 void    sort_100(t_stack **stack_a,t_stack **stack_b)
 {
-	t_values	*values;
+	int			lowest;
+	t_values	values;
 	int			min;
 	int			max;
 
 	min = 0;
-	max = (ft_lstsize(*stack_a) / 5);
+	max = 30;
 	while (*stack_a)
 	{
-		move_up_or_dw(min, max, stack_a, values);
-		if (values->moves_up < values->moves_dw)
+		move_up_or_dw(min, max, stack_a, &values);
+		if (values.moves_up < values.moves_dw)
 		{
-			while(values->moves_up >= 0)
+			while(values.moves_up-- > 0)
 				ra(stack_a, 1);
 			pb(stack_a, stack_b);
 		} 
-		else if(values->moves_up > values->moves_dw)
+		else
 		{
-			while(values->moves_dw >= 0)
+			while(values.moves_up-- > 0)
 				rra(stack_a, 1);
 			pb(stack_a, stack_b);
 		}
+		if (no_max_min(stack_a, max, min) == 1)
+		{
+			min = max;
+			max = max + 30;	
+		}
 	}
+	while(ft_lstsize(*stack_b))
+	{
+		lowest = the_highest(stack_b);
+		rotate_to_lowest(stack_b, lowest);
+		pa(stack_a, stack_b);
+	}
+//	sort_three(stack_b);
+//	while (*stack_b)
+//		pa(stack_a, stack_b);
 }
 void	my_algoritm(t_stack **stack_a, t_stack **stack_b)
 {
@@ -109,7 +149,7 @@ void	my_algoritm(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	else if(ft_lstsize(*stack_a) <= 3)
 		sort_three(stack_a);
-	else if(ft_lstsize(*stack_a) <= 100)
+	else if(ft_lstsize(*stack_a) >= 100) 
 		sort_100(stack_a, stack_b);
 	else
 	{

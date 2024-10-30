@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:12 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/09 13:39:14 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:11:13 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	create_t_lis(int argc, char **argv, t_stack **stack_a)
 {
-	int i;
-	t_stack *new;
+	int		i;
+	t_stack	*new;
 
 	i = 1;
 	*stack_a = ft_lstnew(ft_atoi(argv[i++]));
@@ -28,7 +28,7 @@ void	create_t_lis(int argc, char **argv, t_stack **stack_a)
 	ft_lstadd_last(stack_a);
 }
 
-void	print_lis(t_stack *stack_a)
+/*void	print_lis(t_stack *stack_a)
 {
 	t_stack *current = stack_a;
 	int i = 0;
@@ -37,7 +37,7 @@ void	print_lis(t_stack *stack_a)
 	printf("NEXT\n");
 	while (i < j)
 	{
-		printf("%d\n",current->num);
+		printf("%d>>%d\n",current->num, current->index);
 		current = current->next;
 		i++;
 	}
@@ -46,13 +46,13 @@ void	print_lis(t_stack *stack_a)
 	i = 0;
 	while (i < j)
 	{
-		current = current->prev;
-		printf("%d\n",current->num);
+		current = current->prev;	
+		printf("%d>>%d\n",current->num, current->index);
 		i++;
 	}
 }
-
-int main(int argc, char **argv)
+*/
+int	main(int argc, char **argv)
 {
 	static t_stack	*stack_a;
 	static t_stack	*stack_b;
@@ -62,10 +62,7 @@ int main(int argc, char **argv)
 	if (0 == checker(argv))
 		return (error());
 	create_t_lis(argc, argv, &stack_a);
-	print_lis(stack_a);
-	print_lis(stack_b);
+	put_index(&stack_a);
 	my_algoritm(&stack_a, &stack_b);
-	print_lis(stack_a);
-	print_lis(stack_b);
 	return (1);
 }

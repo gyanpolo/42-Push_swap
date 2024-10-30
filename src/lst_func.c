@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:11:40 by gpolo             #+#    #+#             */
-/*   Updated: 2024/09/19 17:56:02 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:20:39 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ t_stack	*ft_lstnew(int content)
 	return (new_node);
 }
 
-t_stack *ft_lstfirst(t_stack *lst)
+t_stack	*ft_lstfirst(t_stack *lst)
 {
 	if (lst == NULL)
 		return (0);
 	while (lst->prev != NULL)
 		lst = lst->prev;
-	return(lst);
+	return (lst);
 }
 
 t_stack	*ft_lstlast(t_stack *lst)
@@ -44,10 +44,10 @@ t_stack	*ft_lstlast(t_stack *lst)
 }
 
 void	ft_lstadd_last(t_stack **lst)
-{	
+{
 	t_stack	*last;
 	t_stack	*first;
-	
+
 	last = ft_lstlast(*lst);
 	first = ft_lstfirst(*lst);
 	last->next = first;
