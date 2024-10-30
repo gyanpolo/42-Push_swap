@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:12 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/29 13:11:13 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:05:23 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	create_t_lis(int argc, char **argv, t_stack **stack_a)
 	ft_lstadd_last(stack_a);
 }
 
-/*void	print_lis(t_stack *stack_a)
+void	print_lis(t_stack *stack_a)
 {
 	t_stack *current = stack_a;
 	int i = 0;
@@ -51,7 +51,7 @@ void	create_t_lis(int argc, char **argv, t_stack **stack_a)
 		i++;
 	}
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	static t_stack	*stack_a;
@@ -64,5 +64,7 @@ int	main(int argc, char **argv)
 	create_t_lis(argc, argv, &stack_a);
 	put_index(&stack_a);
 	my_algoritm(&stack_a, &stack_b);
+	print_lis(stack_a);
+	print_lis(stack_b);
 	return (1);
 }

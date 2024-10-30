@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:07:16 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/29 12:37:42 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:03:44 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	sort_three(t_stack **stack_a)
 {
-	int a;
-	int b;
-	int c;
+	int	a;
+	int	b;
+	int	c;
 
 	a = (*stack_a)->num;
 	b = (*stack_a)->next->num;
 	c = (*stack_a)->next->next->num;
-
 	if (a > b && b < c && a < c)
 		sa(stack_a, 1);
 	else if (a > b && b > c)
@@ -40,7 +39,7 @@ void	sort_three(t_stack **stack_a)
 		rra(stack_a, 1);
 }
 
-void put_index(t_stack **stack_a)
+void	put_index(t_stack **stack_a)
 {
 	int	lowest;
 	int	first;
@@ -63,13 +62,18 @@ void put_index(t_stack **stack_a)
 	while ((*stack_a)->num != first)
 		*stack_a = (*stack_a)->next;
 }
-
-void move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
+void	move_up_or_dw(t_maxmin *maxmin, t_stack **stack_a, t_values *values)
 {
-	t_stack *tmp;
-	int size;
-	int i;
-	int j;
+	find_move_up(maxmin, *stack_a, values);
+	find_move_dw(maxmin, *stack_a, values ,values->moves_up);
+}
+/*
+void	move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
+{
+	t_stack	*tmp;
+	int		size;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -100,19 +104,23 @@ void move_up_or_dw(int min, int max, t_stack **stack_a, t_values *values)
 		j++;
 	}
 }
-
+*/
 void    sort_100(t_stack **stack_a,t_stack **stack_b)
 {
 	int			lowest;
 	t_values	values;
-	int			min;
-	int			max;
+	t_maxmin	maxmin;
+//	int 		max;
+//	int			min;
 
-	min = 0;
-	max = 30;
+//	min = 0;
+//	max = 30;
+	maxmin.min = 0;
+	maxmin.max = 30;
 	while (*stack_a)
 	{
-		move_up_or_dw(min, max, stack_a, &values);
+		move_up_or_dw(&maxmin, stack_a, &values);
+//		move_up_or_dw(min, max, stack_a, &values);
 		if (values.moves_up < values.moves_dw)
 		{
 			while(values.moves_up-- > 0)
@@ -125,10 +133,15 @@ void    sort_100(t_stack **stack_a,t_stack **stack_b)
 				rra(stack_a, 1);
 			pb(stack_a, stack_b);
 		}
-		if (no_max_min(stack_a, max, min) == 1)
+/*		if (no_max_min(stack_a, max, min) == 1)
 		{
 			min = max;
-			max = max + 30;	
+			max = max + 30;
+		}*/
+		if (no_max_min(stack_a, maxmin.max, maxmin.min) == 1)
+		{
+			maxmin.min = maxmin.max;
+			maxmin.max = maxmin.max + 30;
 		}
 	}
 	while(ft_lstsize(*stack_b))

@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 12:00:31 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/04 12:19:37 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 11:18:06 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
 
-	i = push(stack_b ,stack_a);
+	i = push(stack_b, stack_a);
 	if (i == 1)
 		ft_printf("pa\n");
 }
 
-void    pb(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
 
-	i = push(stack_a ,stack_b);
+	i = push(stack_a, stack_b);
 	if (i == 1)
 		ft_printf("pb\n");
 }

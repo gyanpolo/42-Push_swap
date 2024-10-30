@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:30 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/29 13:13:19 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 12:29:37 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -30,6 +30,12 @@ typedef struct s_stack
 	int				index;
 	struct s_stack	*next;
 }		t_stack;
+
+typedef struct s_maxmin
+{
+	int	max;
+	int min;
+}		t_maxmin;
 
 int		error(void);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
@@ -68,5 +74,7 @@ void	move_up_or_dw_b(int num, t_stack **stack_b, t_values *values);
 int		the_highest(t_stack **stack_a);
 int		the_next_lowest(t_stack **satck_a, int lowest);
 void	put_index(t_stack **stack_a);
+void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a, t_values *values, int moves_up);
+void	find_move_up(t_maxmin *maxmin, t_stack *stack_a, t_values *values);
 
 #endif

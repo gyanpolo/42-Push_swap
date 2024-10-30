@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:12:44 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/29 13:15:25 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 12:39:29 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,47 @@ int	the_next_lowest(t_stack **stack_a, int lowest)
 		low = stack_i->num;
 	return (low);
 }
+
+void	find_move_up(t_maxmin *maxmin, t_stack *stack_a, t_values *values)
+{
+	t_stack	*tmp;
+	int		size;
+	int		i;
+
+	i = 0;
+	tmp = stack_a;
+	size = ft_lstsize(stack_a);
+	while (size > 0)
+	{
+		if (tmp->index < maxmin->max && tmp->index >= maxmin->min)
+		{
+			values->moves_up = i;
+			break;
+		}
+		tmp = tmp->next;
+		size--;
+		i++;
+	}
+}
+
+void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a, t_values *values, int moves_up)
+{
+	t_stack	*tmp;
+	int		size;
+	int		j;
+
+	j = 0;
+	tmp = stack_a;
+	size = ft_lstsize(stack_a);
+	while (size > 0)
+	{
+		if (tmp->index < maxmin->max && tmp->index >= maxmin->min && moves_up != j)
+		{
+			values->moves_dw = j;
+			break;
+		}
+		tmp = tmp->next;
+		size--;
+		j++;
+	}
+}	
