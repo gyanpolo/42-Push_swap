@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:07:16 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/31 12:31:14 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:45:16 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,11 @@ void	my_algoritm(t_stack **stack_a, t_stack **stack_b)
 
 	if (ft_lstsize(*stack_a) <= 1 || are_in_o(stack_a) == 1)
 		return ;
-	else if ((*stack_a)->num > (*stack_a)->next->num)
-		sa(stack_a, 1);
+	else if (ft_lstsize(*stack_a) == 2)
+	{
+		if ((*stack_a)->num > (*stack_a)->next->num)
+			sa(stack_a, 1);
+	}
 	else if (ft_lstsize(*stack_a) <= 3)
 		sort_three(stack_a);
 	else if (ft_lstsize(*stack_a) >= 100)
