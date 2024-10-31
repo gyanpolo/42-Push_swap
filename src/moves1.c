@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 15:06:34 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/30 11:14:51 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 13:53:30 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rra(t_stack **stack_a, int i)
 
 void	rrb(t_stack **stack_b, int i)
 {
-	r_rotate(stack_b);
+	i += r_rotate(stack_b);
 	if (i == 2)
 		ft_printf("rrb\n");
 }

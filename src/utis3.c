@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:37:49 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/30 14:39:34 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 14:26:05 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,28 @@ void	update_maxmin(t_stack **stack_a, t_maxmin *maxmin)
 		maxmin->min = maxmin->max;
 		maxmin->max += 30;
 	}
+}
+
+void	rotate_to_lowest_b(t_stack **stack_b, int lowest)
+{
+	int		size;
+	int		pos;
+	t_stack	*temp;
+
+	size = ft_lstsize(*stack_b);
+	pos = 0;
+	temp = *stack_b;
+	while (temp)
+	{
+		if (temp->num == lowest)
+			break ;
+		temp = temp->next;
+		pos++;
+	}
+	if (pos <= size / 2)
+		while ((*stack_b)->num != lowest)
+			rb(stack_b, 1);
+	else
+		while ((*stack_b)->num != lowest)
+			rrb(stack_b, 1);
 }

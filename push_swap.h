@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:30 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/30 15:34:41 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 14:12:01 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -83,4 +83,6 @@ void	move_elements_to_b(t_stack **stack_a, t_stack **stack_b);
 void	ft_lstclear(t_stack **lst);
 void	ft_lstdelone(t_stack *lst);
 void	free_content(void *content);
+void	rotate_to_lowest_b(t_stack **stack_b, int lowest);
+
 #endif

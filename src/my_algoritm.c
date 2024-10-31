@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:07:16 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/31 12:45:16 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 14:25:28 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,13 @@ void	sort_100(t_stack **stack_a, t_stack **stack_b)
 	while (ft_lstsize(*stack_b))
 	{
 		lowest = the_highest(stack_b);
-		rotate_to_lowest(stack_b, lowest);
+		rotate_to_lowest_b(stack_b, lowest);
 		pa(stack_a, stack_b);
 	}
 }
 
 void	my_algoritm(t_stack **stack_a, t_stack **stack_b)
 {
-	int	lowest;
-
 	if (ft_lstsize(*stack_a) <= 1 || are_in_o(stack_a) == 1)
 		return ;
 	else if (ft_lstsize(*stack_a) == 2)
@@ -95,18 +93,6 @@ void	my_algoritm(t_stack **stack_a, t_stack **stack_b)
 	}
 	else if (ft_lstsize(*stack_a) <= 3)
 		sort_three(stack_a);
-	else if (ft_lstsize(*stack_a) >= 100)
-		sort_100(stack_a, stack_b);
 	else
-	{
-		while (ft_lstsize(*stack_a) > 3)
-		{
-			lowest = the_lowest(stack_a);
-			rotate_to_lowest(stack_a, lowest);
-			pb(stack_a, stack_b);
-		}
-		sort_three(stack_a);
-		while (*stack_b)
-			pa(stack_a, stack_b);
-	}
+		sort_100(stack_a, stack_b);
 }
