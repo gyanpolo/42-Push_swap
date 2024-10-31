@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:52:30 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/30 12:29:37 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 15:34:41 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -34,7 +34,7 @@ typedef struct s_stack
 typedef struct s_maxmin
 {
 	int	max;
-	int min;
+	int	min;
 }		t_maxmin;
 
 int		error(void);
@@ -70,11 +70,17 @@ int		the_lowest(t_stack **stack_a);
 int		are_in_o(t_stack **stack_a);
 void	rotate_to_lowest(t_stack **stack_a, int lowest);
 int		no_max_min(t_stack **stack, int max, int min);
-void	move_up_or_dw_b(int num, t_stack **stack_b, t_values *values);
 int		the_highest(t_stack **stack_a);
 int		the_next_lowest(t_stack **satck_a, int lowest);
 void	put_index(t_stack **stack_a);
-void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a, t_values *values, int moves_up);
+void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a,
+			t_values *values, int moves_up);
 void	find_move_up(t_maxmin *maxmin, t_stack *stack_a, t_values *values);
-
+void	move_stack(t_stack **stack_a, t_stack **stack_b, t_values *values);
+void	update_maxmin(t_stack **stack_a, t_maxmin *maxmin);
+void	move_up_or_dw(t_maxmin *maxmin, t_stack **stack_a, t_values *values);
+void	move_elements_to_b(t_stack **stack_a, t_stack **stack_b);
+void	ft_lstclear(t_stack **lst);
+void	ft_lstdelone(t_stack *lst);
+void	free_content(void *content);
 #endif

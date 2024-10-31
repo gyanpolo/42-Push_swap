@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:12:44 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/30 12:39:29 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/30 14:37:39 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	find_move_up(t_maxmin *maxmin, t_stack *stack_a, t_values *values)
 		if (tmp->index < maxmin->max && tmp->index >= maxmin->min)
 		{
 			values->moves_up = i;
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 		size--;
@@ -71,7 +71,8 @@ void	find_move_up(t_maxmin *maxmin, t_stack *stack_a, t_values *values)
 	}
 }
 
-void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a, t_values *values, int moves_up)
+void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a,
+			t_values *values, int moves_up)
 {
 	t_stack	*tmp;
 	int		size;
@@ -82,13 +83,29 @@ void	find_move_dw(t_maxmin *maxmin, t_stack *stack_a, t_values *values, int move
 	size = ft_lstsize(stack_a);
 	while (size > 0)
 	{
-		if (tmp->index < maxmin->max && tmp->index >= maxmin->min && moves_up != j)
+		if (tmp->index < maxmin->max && tmp->index >= maxmin->min
+			&& moves_up != j)
 		{
 			values->moves_dw = j;
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 		size--;
 		j++;
 	}
-}	
+}
+
+void	move_elements_to_b(t_stack **stack_a, t_stack **stack_b)
+{
+	t_values	values;
+	t_maxmin	maxmin;
+
+	maxmin.min = 0;
+	maxmin.max = 30;
+	while (*stack_a)
+	{
+		move_up_or_dw(&maxmin, stack_a, &values);
+		move_stack(stack_a, stack_b, &values);
+		update_maxmin(stack_a, &maxmin);
+	}
+}

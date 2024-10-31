@@ -6,23 +6,25 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:34:17 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/29 13:19:47 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 11:22:57 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_lstdelone(t_stack *lst, void (*del)(void *))
+/*
+void	ft_lstdelone(t_stack *lst)
 {
-	if (!lst || !del)
+	if (!lst)
 		return ;
-	del(&(lst->num));
 	free(lst);
-}
+}*/
 
-void	free_content(void *content)
+void	ft_lstclear(t_stack **lst)
 {
-	free(content);
+	while (lst && *lst)
+	{
+		ft_delete_first_node(lst);
+	}
 }
 
 void	ft_delete_first_node(t_stack **lst)
@@ -38,6 +40,7 @@ void	ft_delete_first_node(t_stack **lst)
 		first->next->prev = first->prev;
 		*lst = first->next;
 	}
+	free(first);
 }
 
 void	ft_lstadd_front(t_stack **lst, t_stack *new)

@@ -6,7 +6,7 @@
 /*   By: gpolo <gpolo@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:40:05 by gpolo             #+#    #+#             */
-/*   Updated: 2024/10/29 13:27:02 by gpolo            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:32:24 by gpolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	error(void)
 {
-	ft_printf("ERROR\n");
+	write(2, "Error\n", 6);
 	return (0);
 }
 
@@ -46,7 +46,14 @@ int	push(t_stack **stack_i, t_stack **stack_p)
 	first = *stack_i;
 	if (!stack_i || !(*stack_i))
 		return (0);
-	ft_delete_first_node(stack_i);
+	if (first->next == first)
+		*stack_i = NULL;
+	else
+	{
+		first->prev->next = first->next;
+		first->next->prev = first->prev;
+		*stack_i = first->next;
+	}
 	ft_lstadd_front(stack_p, first);
 	return (1);
 }
